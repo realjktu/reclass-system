@@ -49,6 +49,8 @@ parameters:
               branches: ${_param:salt_formulas_branches}
             - name: dekapod
               branches: ${_param:salt_formulas_branches}
+            - name: debmirror
+              branches: ${_param:salt_formulas_branches}
             - name: devops-portal
               branches: ${_param:salt_formulas_branches}
             - name: docker
@@ -131,6 +133,8 @@ parameters:
               branches: ${_param:salt_formulas_branches}
             - name: magnum
               branches: ${_param:salt_formulas_branches}
+            - name: manila
+              branches: ${_param:salt_formulas_branches}
             - name: memcached
               branches: ${_param:salt_formulas_branches}
             - name: midonet
@@ -201,6 +205,8 @@ parameters:
               branches: ${_param:salt_formulas_branches}
             - name: rundeck
               branches: ${_param:salt_formulas_branches}
+            - name: runtest
+              branches: ${_param:salt_formulas_branches}
             - name: sahara
               branches: ${_param:salt_formulas_branches}
             - name: salt
@@ -242,6 +248,7 @@ parameters:
             scm:
               type: git
               url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+              branch: "${_param:jenkins_pipelines_branch}"
               credentials: "gerrit"
               script: git-mirror-2way-pipeline.groovy
               github:
@@ -250,6 +257,14 @@ parameters:
               github:
               pollscm:
                 spec: ${_param:jenkins_pollscm_spec}
+              gerrit:
+                project:
+                  salt-formulas/{{name}}:
+                    branches:
+                      - master
+                event:
+                  ref:
+                    - updated
             param:
               SOURCE_URL:
                 type: string
@@ -275,6 +290,7 @@ parameters:
           scm:
             type: git
             url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+            branch: "${_param:jenkins_pipelines_branch}"
             credentials: "gerrit"
             script: git-mirror-2way-pipeline.groovy
             github:
@@ -307,6 +323,7 @@ parameters:
           scm:
             type: git
             url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+            branch: "${_param:jenkins_pipelines_branch}"
             credentials: "gerrit"
             script: git-mirror-2way-pipeline.groovy
             github:
@@ -321,7 +338,7 @@ parameters:
               default: "${_param:jenkins_gerrit_url}/salt-formulas/salt-formulas-cookiecutter.git"
             TARGET_URL:
               type: string
-              default: "https://github.com/salt-formulas/salt-formulas-cookiecutter.git"
+              default: "git@github.com:salt-formulas/salt-formulas-cookiecutter.git"
             CREDENTIALS_ID:
               type: string
               default: "gerrit"

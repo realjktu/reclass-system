@@ -56,6 +56,9 @@ parameters:
             - name: kubernetes
               upload_source_package: true
               dist: xenial
+            - name: mirascan
+              upload_source_package: true
+              dist: xenial
             - name: neutron
               upload_source_package: true
               dist: xenial
@@ -76,6 +79,7 @@ parameters:
             scm:
               type: git
               url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+              branch: "${_param:jenkins_pipelines_branch}"
               credentials: "gerrit"
               script: build-debian-packages-pipeline.groovy
             trigger:

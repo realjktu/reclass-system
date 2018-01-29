@@ -12,6 +12,7 @@ parameters:
           scm:
             type: git
             url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+            branch: "${_param:jenkins_pipelines_branch}"
             credentials: "gerrit"
             script: ceph-upgrade.groovy
           param:
@@ -71,4 +72,4 @@ parameters:
             BACKUP_ENABLED:
               type: boolean
               default: 'true'
-              description: Set to True if disks of Ceph VMs should be copied before upgrade
+              description: Select to copy the disks of Ceph VMs before upgrade and backup Ceph directories on OSD nodes.

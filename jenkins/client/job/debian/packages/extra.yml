@@ -148,11 +148,11 @@ parameters:
             - package: telegraf
               dist: trusty
               build: telegraf
-              branch: release-1.2
+              branch: release-1.5
             - package: telegraf
               dist: xenial
               build: telegraf
-              branch: release-1.2
+              branch: release-1.5
             - package: libvirt-exporter
               dist: xenial
               build: libvirt-exporter
@@ -189,12 +189,29 @@ parameters:
               dist: xenial
               build: pipeline
               branch: debian/xenial
+            - package: gerritlib
+              dist: xenial
+              build: pipeline
+              branch: debian/xenial
+            - package: python-pygerrit2
+              dist: xenial
+              build: pipeline
+              branch: debian/xenial
+            - package: jeepyb
+              dist: xenial
+              build: pipeline
+              branch: debian/xenial
+            - package: salt-pepper
+              dist: xenial
+              build: pipeline
+              branch: debian/xenial
           template:
             type: workflow-scm
             concurrent: false
             scm:
               type: git
               url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+              branch: "${_param:jenkins_pipelines_branch}"
               credentials: "gerrit"
               script: build-debian-packages-{{build}}.groovy
             trigger:

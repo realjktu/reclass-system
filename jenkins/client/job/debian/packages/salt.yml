@@ -170,6 +170,9 @@ parameters:
             - name: magnum
               upload_source_package: false
               dist: trusty
+            - name: manila
+              upload_source_package: false
+              dist: trusty
             - name: memcached
               upload_source_package: false
               dist: trusty
@@ -264,6 +267,9 @@ parameters:
               upload_source_package: false
               dist: trusty
             - name: rundeck
+              upload_source_package: false
+              dist: trusty
+            - name: runtest
               upload_source_package: false
               dist: trusty
             - name: sahara
@@ -395,6 +401,9 @@ parameters:
             - name: fluentbit
               upload_source_package: true
               dist: xenial
+            - name: fluentd
+              upload_source_package: true
+              dist: xenial
             - name: foreman
               upload_source_package: true
               dist: xenial
@@ -480,6 +489,9 @@ parameters:
               upload_source_package: true
               dist: xenial
             - name: magnum
+              upload_source_package: true
+              dist: xenial
+            - name: manila
               upload_source_package: true
               dist: xenial
             - name: memcached
@@ -581,6 +593,9 @@ parameters:
             - name: rsyslog
               upload_source_package: true
               dist: xenial
+            - name: runtest
+              upload_source_package: true
+              dist: xenial
             - name: sahara
               upload_source_package: true
               dist: xenial
@@ -637,6 +652,7 @@ parameters:
             scm:
               type: git
               url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+              branch: "${_param:jenkins_pipelines_branch}"
               credentials: "gerrit"
               script: build-debian-packages-pipeline.groovy
             trigger:

@@ -8,10 +8,11 @@ parameters:
           display_name: "Deploy - stack cleanup"
           discard:
             build:
-              keep_num: 20
+              keep_num: 50
           scm:
             type: git
             url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+            branch: "${_param:jenkins_pipelines_branch}"
             credentials: "gerrit"
             script: cleanup-pipeline.groovy
           param:
@@ -58,7 +59,7 @@ parameters:
               default: "aws-credentials"
             AWS_DEFAULT_REGION:
               type: string
-              default: "us-west-2"
+              default: "eu-central-1"
 
         delete-failed-stacks:
           type: workflow-scm
@@ -70,6 +71,7 @@ parameters:
           scm:
             type: git
             url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+            branch: "${_param:jenkins_pipelines_branch}"
             credentials: "gerrit"
             script: delete-broken-stacks-pipeline.groovy
           trigger:

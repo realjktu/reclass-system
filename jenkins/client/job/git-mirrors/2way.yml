@@ -22,6 +22,7 @@ parameters:
             scm:
               type: git
               url: "${_param:jenkins_gerrit_url}/mk/mk-pipelines"
+              branch: "${_param:jenkins_pipelines_branch}"
               credentials: "gerrit"
               script: git-mirror-2way-pipeline.groovy
               github:
@@ -30,6 +31,14 @@ parameters:
               github:
               pollscm:
                 spec: ${_param:jenkins_pollscm_spec}
+              gerrit:
+                project:
+                  "{{source}}":
+                    branches:
+                      - master
+                event:
+                  ref:
+                    - updated
             param:
               SOURCE_URL:
                 type: string
@@ -43,3 +52,4 @@ parameters:
               BRANCHES:
                 type: string
                 default: "{{branches}}"
+                description: "Comma-separated list of branches to mirror"
