@@ -29,7 +29,7 @@ parameters:
         address: ${_param:cluster_local_address}
         private_address: ${_param:cluster_vip_address}
         private_port: 35357
-        private_api_version: ''
+        private_api_version: 'v3'
         public_address: ${_param:cluster_vip_address}
         public_port: 5000
       region: ${_param:openstack_region}
